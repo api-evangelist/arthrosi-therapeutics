@@ -1,7 +1,16 @@
 aid: arthrosi-therapeutics
 name: Arthrosi Therapeutics
-description: 'Arthrosi Therapeutics is a company surfaced via the API Evangelist harvest backlog (source:
-  secondary-market) and added to the network as a stub for full-pipeline profiling.'
+description: 'Arthrosi Therapeutics, Inc. is a late-stage clinical biotechnology company
+  founded in 2018 and headquartered in San Diego, California, by a team of gout specialists
+  who previously led first-generation urate-transporter development at Ardea Biosciences.
+  Its lead candidate, pozdeutinurad (AR882), is a once-daily oral next-generation URAT1
+  inhibitor in two fully enrolled replicate global Phase 3 trials (REDUCE 1 and REDUCE
+  2) for progressive and tophaceous gout, backed by roughly $299M in venture financing
+  including a $153M Series E led by Prime Eight Capital. Sobi (Swedish Orphan Biovitrum)
+  completed its acquisition of Arthrosi on 9 February 2026. Arthrosi is a drug developer,
+  not a software company: it operates a WordPress corporate site with company, leadership
+  and news pages, and publishes no developer portal, public API, SDK, package or machine-readable
+  specification of any kind.'
 url: https://raw.githubusercontent.com/api-evangelist/arthrosi-therapeutics/refs/heads/main/apis.yml
 x-type: company
 x-source: harvest:secondary-market
@@ -12,6 +21,14 @@ created: '2026-08-06'
 modified: '2026-08-06'
 tags:
 - Company
+- Biotechnology
+- Pharmaceuticals
+- Life Sciences
+- Clinical Trials
+- Drug Development
+- Gout
+- Rheumatology
+- Healthcare
 apis: []
 maintainers:
 - FN: Kin Lane
@@ -19,5 +36,44 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DomainSecurity
+  url: security/arthrosi-therapeutics-domain-security.yml
 - type: Website
+  url: https://arthrosi.com/
+- type: About
+  url: https://arthrosi.com/company/
+- type: Team
+  url: https://arthrosi.com/team/
+- type: Blog
+  url: https://arthrosi.com/news-media/
+- type: LinkedIn
+  url: https://www.linkedin.com/company/arthrosi-therapeutics-inc
+- type: SecondaryMarket
   url: https://forgeglobal.com/arthrosi-therapeutics_stock/
+- type: LLMsTxt
+  url: llms/arthrosi-therapeutics-llms.txt
+x-enrichment:
+  date: '2026-08-06'
+  status: minimal
+  artifacts_added: 3
+  pass: local-v1
+x-coverage:
+  state: none
+  reason: not-a-software-company
+  detail: >-
+    Arthrosi is a San Diego drug developer whose product is a Phase 3 oral gout molecule
+    (pozdeutinurad/AR882, acquired by Sobi in February 2026), not software — there is no
+    GitHub org, no package on any registry and no api/docs/developer subdomain in DNS, and
+    its single web property is a WordPress marketing site that answers HTTP 202 with a
+    SiteGround sgcaptcha interstitial to every path including /robots.txt and a bogus
+    control path, so even the marketing copy is machine-unreadable.
+  evidence:
+  - url: https://arthrosi.com/robots.txt
+    status: 202
+  - url: https://arthrosi.com/.well-known/agent-card.json
+    status: 202
+  - url: https://api.github.com/orgs/arthrosi
+    status: 404
+  - url: https://pypi.org/pypi/arthrosi/json
+    status: 404
+  checked: '2026-08-06'

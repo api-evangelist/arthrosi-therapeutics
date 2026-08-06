@@ -1,0 +1,37 @@
+generated: '2026-08-06'
+method: probed
+source: live GET of the /.well-known/ discovery surface on the only known Arthrosi host
+result: none
+note: >-
+  Nothing was found. Recorded as evidence of the probe, not as a discovery surface — NO
+  `WellKnown`, `SecurityTxt`, `APICatalog` or `AgentCard` pointer is wired in apis.yml,
+  because no document exists to point at. arthrosi.com answers HTTP 202 with a SiteGround
+  `sgcaptcha` interstitial (`sg-captcha: challenge`, `x-robots-tag: noindex`, a 169-byte
+  meta-refresh to /.well-known/sgcaptcha/) on EVERY path — including /robots.txt and a
+  deliberately bogus control path — so every 202 below is a WAF challenge, not a document.
+  The 202s must never be read as a hit. No api/docs/developer/portal/app subdomain resolves
+  in DNS, so there is no second host to probe.
+hosts:
+- host: https://arthrosi.com
+  behavior: siteground-sgcaptcha-interstitial-on-every-path
+  control_path: /zzz-control-404-<random>
+  control_status: 202
+  documents:
+  - {path: /.well-known/security.txt, status: 202, found: false}
+  - {path: /security.txt, status: 202, found: false}
+  - {path: /.well-known/openid-configuration, status: 202, found: false}
+  - {path: /.well-known/oauth-authorization-server, status: 202, found: false}
+  - {path: /.well-known/oauth-protected-resource, status: 202, found: false}
+  - {path: /.well-known/api-catalog, status: 202, found: false}
+  - {path: /.well-known/ai-plugin.json, status: 202, found: false}
+  - {path: /.well-known/agent-card.json, status: 202, found: false}
+  - {path: /.well-known/agent.json, status: 202, found: false}
+  - {path: /llms.txt, status: 202, found: false}
+  - {path: /openapi.json, status: 202, found: false}
+  - {path: /swagger.json, status: 202, found: false}
+  - {path: /api-docs, status: 202, found: false}
+  - {path: /robots.txt, status: 202, found: false}
+  - {path: /sitemap.xml, status: 202, found: false}
+subdomains_probed:
+  method: DNS A lookup, none resolve
+  names: [api, docs, developer, developers, portal, app]
